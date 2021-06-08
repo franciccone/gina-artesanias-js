@@ -1,0 +1,63 @@
+/* ---------- NOVEDADES ---------- */
+
+section h2 {
+    font-size: 3rem;
+
+    text: {
+        align: center;
+        transform: uppercase;
+    }
+
+}
+
+section.news {
+    text-align: center;
+}
+
+section.news .news-img {
+    margin: 0 1em;
+}
+
+section.news img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+}
+
+section .cta-news {
+    border-style: solid;
+    margin: 0.8em 0 0.8em 0;
+}
+
+.img-news-section {
+    margin: 1.5em 0 0 0;
+    padding: 0 1em;
+}
+
+.img-news-section img {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    &:hover {
+        box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+
+}
+
+.news-title {
+    font-size: 3em;
+}
+
+.news-title-section {
+    margin: 0.3em 0 0 0;
+}

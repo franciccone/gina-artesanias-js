@@ -1,0 +1,25 @@
+/* ---------- TEXTS ---------- */
+
+.pages-titles {
+    margin: 0.5em 0;
+}
+
+.long-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.info-subtitles {
+    margin: 1em 0;
+    font-size: 1.5em;
+}
+
+.paragraph {
+    margin: 0 2em 1em 2em;
+
+    text: {
+        align: center;
+        justify: inter-word;
+    }
+
+}
