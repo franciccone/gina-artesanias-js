@@ -1,39 +1,37 @@
-// Defino la función 'sumar'
+// Defino la función 'add'
 
-function sumar(num1, num2) {
+function add(num1, num2) {
 
-    let suma = num1 + num2;
-    return suma
+    let add = num1 + num2;
+    return add
 
 }
 
 // Defino 'precio' y 'lugar' con prompts para pedírselos al usuario
 
-let precio = Number(prompt("Ingrese el valor total de los productos adquiridos."))
-let lugar = prompt("Ingrese su provincia de residencia para calcular el envío.")
+let cost = Number(prompt("Ingrese el valor total de los productos adquiridos."))
+let place = prompt("Ingrese su provincia de residencia para calcular el envío.")
 
-// Defino la función 'enviar' para calcular el envío correspondiente, avise por console.log y luego llamo a la función
+// Defino la función 'shipping' para calcular el envío correspondiente, aviso por console.log y luego llamo a la función
 
-function envio() {
+function shipping() {
     let total = 0
 
-    if (lugar != "" && (lugar === "CABA" || lugar === "Ciudad de Buenos Aires" || lugar === "Capital" || lugar === "Capital Federal" || lugar === "caba" || lugar === "ciudad de buenos aires" || lugar === "capital" || lugar === "capital federal")) {
-        total = sumar(precio, 0);
+    if (place != "" && (place === "CABA" || place === "Ciudad de Buenos Aires" || place === "Capital" || place === "Capital Federal" || place === "caba" || place === "ciudad de buenos aires" || place === "capital" || place === "capital federal")) {
+        total = add(cost, 0);
         console.log("El envío de su pedido es gratuito. El valor total es de $" + total + ".")
-    } else if (lugar != "" && (lugar === "Buenos Aires" || lugar === "Provincia de Buenos Aires" || lugar === "Bs As" || lugar === "BsAs" || lugar === "buenos aires" || lugar === "provincia de buenos aires" || lugar === "bs as" || lugar === "bsas")) {
-        total = sumar(precio, 250);
+    } else if (place != "" && (place === "Buenos Aires" || place === "Provincia de Buenos Aires" || place === "Bs As" || place === "BsAs" || place === "buenos aires" || place === "provincia de buenos aires" || place === "bs as" || place === "bsas")) {
+        total = add(cost, 250);
         console.log("El envío de su pedido es de $250. El valor total es de $" + total + ".")
     } else {
-        total = sumar(precio, 500);
+        total = add(cost, 500);
         console.log("El envío de su pedido es de $500. El valor total es de $" + total + ".")
     }
 }
 
-envio()
+shipping()
 
-// Defino 'precio' y 'lugar' con prompts para pedírselos al usuario
-
-
+// Defino el array 'cart' y luego creo la clase 'Producto', con funciones dentro
 
 let cart = []
 
@@ -66,6 +64,8 @@ class Producto {
     }
 }
 
+// Defino las variables de todos los productos disponibles en la web
+
 const crochetOsito = new Producto(1, 'Osito de crochet', 600, 3)
 const crochetRatoncitos = new Producto(2, 'Ratoncitos de crochet', 600, 5)
 const crochetAnimalitos = new Producto(3, 'Animalitos ficticios de crochet', 600, 2)
@@ -78,10 +78,7 @@ const apegoGatitos = new Producto(9, 'Muñecos de apego de gatitos', 900, 10)
 const apegoOsitos = new Producto(10, 'Muñecos de apego de ositos', 900, 10)
 const apegoConejitos = new Producto(11, 'Muñecos de apego de conejitos', 900, 10)
 
-
 crochetOsito.addToCart(1)
 apegoGatitos.addToCart(1)
 cuadroLlama.addToCart(2)
 console.log(cart)
-
-console.log(sumar(1,2,100))
