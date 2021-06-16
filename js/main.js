@@ -31,11 +31,15 @@ function shipping() {
     }
 }
 
+// Salida
+
 shipping()
+
+// ----------------------------------
 
 // DESAFÍO DE OBJETOS Y ARRAYS
 
-// Defino el array 'cart' y luego creo la clase 'Producto', con funciones dentro
+// Defino el array 'cart' vacío y luego creo la clase 'Producto', con funciones dentro
 
 let cart = []
 
@@ -47,17 +51,14 @@ class Producto {
         this.stock = stock;
     }
 
-    // 1°) Retorna el producto
     getId = function() {
         return this.id;
     }
 
-    // 2°) Retorna el precio de cada producto según la cantidad
     getTotal = function(qty) {
         return this.price * qty;
     }
 
-    // 3°) Retorna la ID del producto
     getBuy = function(qty) {
         return {
             product: this,
@@ -66,7 +67,6 @@ class Producto {
         }
     }
 
-    // 4°) Retorna la ID del producto
     addToCart = function (qty) {
         cart.push(this.getBuy(qty))
     }
