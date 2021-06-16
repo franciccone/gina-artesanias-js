@@ -1,3 +1,5 @@
+// PRIMERA ENTREGA DEL PROYECTO FINAL
+
 // Defino la función 'add'
 
 function add(num1, num2) {
@@ -31,6 +33,8 @@ function shipping() {
 
 shipping()
 
+// DESAFÍO DE OBJETOS Y ARRAYS
+
 // Defino el array 'cart' y luego creo la clase 'Producto', con funciones dentro
 
 let cart = []
@@ -43,14 +47,17 @@ class Producto {
         this.stock = stock;
     }
 
+    // 1°) Retorna el producto
     getId = function() {
         return this.id;
     }
 
+    // 2°) Retorna el precio de cada producto según la cantidad
     getTotal = function(qty) {
-         return this.price * qty;
+        return this.price * qty;
     }
 
+    // 3°) Retorna la ID del producto
     getBuy = function(qty) {
         return {
             product: this,
@@ -59,12 +66,13 @@ class Producto {
         }
     }
 
+    // 4°) Retorna la ID del producto
     addToCart = function (qty) {
         cart.push(this.getBuy(qty))
     }
 }
 
-// Defino las variables de todos los productos disponibles en la web
+// Creo los objetos personalizados
 
 const crochetOsito = new Producto(1, 'Osito de crochet', 600, 3)
 const crochetRatoncitos = new Producto(2, 'Ratoncitos de crochet', 600, 5)
@@ -78,7 +86,9 @@ const apegoGatitos = new Producto(9, 'Muñecos de apego de gatitos', 900, 10)
 const apegoOsitos = new Producto(10, 'Muñecos de apego de ositos', 900, 10)
 const apegoConejitos = new Producto(11, 'Muñecos de apego de conejitos', 900, 10)
 
+// Salida
+
 crochetOsito.addToCart(1)
-apegoGatitos.addToCart(1)
+apegoGatitos.addToCart(10)
 cuadroLlama.addToCart(2)
 console.log(cart)
