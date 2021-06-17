@@ -86,7 +86,7 @@ const apegoGatitos = new Producto(9, 'Muñecos de apego de gatitos', 900, 10)
 const apegoOsitos = new Producto(10, 'Muñecos de apego de ositos', 900, 10)
 const apegoConejitos = new Producto(11, 'Muñecos de apego de conejitos', 900, 10)
 
-// Salida
+// Salida, agregando productos al carrito
 
 crochetOsito.addToCart(1)
 apegoGatitos.addToCart(10)
