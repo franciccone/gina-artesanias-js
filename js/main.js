@@ -1,39 +1,39 @@
-// PRIMERA ENTREGA DEL PROYECTO FINAL
+// // PRIMERA ENTREGA DEL PROYECTO FINAL
 
-// Defino la función 'add'
+// // Defino la función 'add'
 
-function add(num1, num2) {
+// function add(num1, num2) {
 
-    let add = num1 + num2;
-    return add
+//     let add = num1 + num2;
+//     return add
 
-}
+// }
 
-// Defino 'precio' y 'lugar' con prompts para pedírselos al usuario
+// // Defino 'precio' y 'lugar' con prompts para pedírselos al usuario
 
-let cost = Number(prompt("Ingrese el valor total de los productos adquiridos."))
-let place = prompt("Ingrese su provincia de residencia para calcular el envío.")
+// let cost = Number(prompt("Ingrese el valor total de los productos adquiridos."))
+// let place = prompt("Ingrese su provincia de residencia para calcular el envío.")
 
-// Defino la función 'shipping' para calcular el envío correspondiente, aviso por console.log y luego llamo a la función
+// // Defino la función 'shipping' para calcular el envío correspondiente, aviso por console.log y luego llamo a la función
 
-function shipping() {
-    let total = 0
+// function shipping() {
+//     let total = 0
 
-    if (place != "" && (place === "CABA" || place === "Ciudad de Buenos Aires" || place === "Capital" || place === "Capital Federal" || place === "caba" || place === "ciudad de buenos aires" || place === "capital" || place === "capital federal")) {
-        total = add(cost, 0);
-        console.log("El envío de su pedido es gratuito. El valor total es de $" + total + ".")
-    } else if (place != "" && (place === "Buenos Aires" || place === "Provincia de Buenos Aires" || place === "Bs As" || place === "BsAs" || place === "buenos aires" || place === "provincia de buenos aires" || place === "bs as" || place === "bsas")) {
-        total = add(cost, 250);
-        console.log("El envío de su pedido es de $250. El valor total es de $" + total + ".")
-    } else {
-        total = add(cost, 500);
-        console.log("El envío de su pedido es de $500. El valor total es de $" + total + ".")
-    }
-}
+//     if (place != "" && (place === "CABA" || place === "Ciudad de Buenos Aires" || place === "Capital" || place === "Capital Federal" || place === "caba" || place === "ciudad de buenos aires" || place === "capital" || place === "capital federal")) {
+//         total = add(cost, 0);
+//         console.log("El envío de su pedido es gratuito. El valor total es de $" + total + ".")
+//     } else if (place != "" && (place === "Buenos Aires" || place === "Provincia de Buenos Aires" || place === "Bs As" || place === "BsAs" || place === "buenos aires" || place === "provincia de buenos aires" || place === "bs as" || place === "bsas")) {
+//         total = add(cost, 250);
+//         console.log("El envío de su pedido es de $250. El valor total es de $" + total + ".")
+//     } else {
+//         total = add(cost, 500);
+//         console.log("El envío de su pedido es de $500. El valor total es de $" + total + ".")
+//     }
+// }
 
-// Salida
+// // Salida
 
-shipping()
+// shipping()
 
 // ----------------------------------
 
