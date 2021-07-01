@@ -1,97 +1,3 @@
-// // PRIMERA ENTREGA DEL PROYECTO FINAL
-
-// // Defino la función 'add'
-
-// function add(num1, num2) {
-
-//     let add = num1 + num2;
-//     return add
-
-// }
-
-// // Defino 'precio' y 'lugar' con prompts para pedírselos al usuario
-
-// let cost = Number(prompt("Ingrese el valor total de los productos adquiridos."))
-// let place = prompt("Ingrese su provincia de residencia para calcular el envío.")
-
-// // Defino la función 'shipping' para calcular el envío correspondiente, aviso por console.log y luego llamo a la función
-
-// function shipping() {
-//     let total = 0
-
-//     if (place != "" && (place === "CABA" || place === "Ciudad de Buenos Aires" || place === "Capital" || place === "Capital Federal" || place === "caba" || place === "ciudad de buenos aires" || place === "capital" || place === "capital federal")) {
-//         total = add(cost, 0);
-//         console.log("El envío de su pedido es gratuito. El valor total es de $" + total + ".")
-//     } else if (place != "" && (place === "Buenos Aires" || place === "Provincia de Buenos Aires" || place === "Bs As" || place === "BsAs" || place === "buenos aires" || place === "provincia de buenos aires" || place === "bs as" || place === "bsas")) {
-//         total = add(cost, 250);
-//         console.log("El envío de su pedido es de $250. El valor total es de $" + total + ".")
-//     } else {
-//         total = add(cost, 500);
-//         console.log("El envío de su pedido es de $500. El valor total es de $" + total + ".")
-//     }
-// }
-
-// // Salida
-
-// shipping()
-
-// ----------------------------------
-
-// DESAFÍO DE OBJETOS Y ARRAYS
-
-// Defino el array 'cart' vacío y luego creo la clase 'Producto', con funciones dentro
-
-// let cart = []
-
-// class Producto {
-//     constructor(id, title, price, stock) {
-//         this.id = id;
-//         this.title = title;
-//         this.price = price;
-//         this.stock = stock;
-//     }
-
-//     getId = function() {
-//         return this.id;
-//     }
-
-//     getTotal = function(qty) {
-//         return this.price * qty;
-//     }
-
-//     getBuy = function(qty) {
-//         return {
-//             product: this,
-//             quantity: qty,
-//             cash: this.getTotal(qty),
-//         }
-//     }
-
-//     addToCart = function (qty) {
-//         cart.push(this.getBuy(qty))
-//     }
-// }
-
-// // Creo los objetos personalizados
-
-// const crochetOsito = new Producto(1, 'Osito de crochet', 600, 3)
-// const crochetRatoncitos = new Producto(2, 'Ratoncitos de crochet', 600, 5)
-// const crochetAnimalitos = new Producto(3, 'Animalitos ficticios de crochet', 600, 2)
-// const accesorioLlama = new Producto(4, 'Accesorio para celular de llama', 300, 8)
-// const accesorioPajaros = new Producto(5, 'Accesorio para celular de pájaros', 300, 7)
-// const cuadroLlama = new Producto(6, 'Cuadro de llama', 1200, 2)
-// const cuadroBulldog = new Producto(7, 'Cuadro de bulldog', 1200, 4)
-// const cuadroCierva = new Producto(8, 'Cuadro de cierva', 1200, 2)
-// const apegoGatitos = new Producto(9, 'Muñecos de apego de gatitos', 900, 10)
-// const apegoOsitos = new Producto(10, 'Muñecos de apego de ositos', 900, 10)
-// const apegoConejitos = new Producto(11, 'Muñecos de apego de conejitos', 900, 10)
-
-// Salida, agregando productos al carrito
-
-// crochetOsito.addToCart(1)
-// apegoGatitos.addToCart(10)
-// cuadroLlama.addToCart(2)
-// console.log(cart)
 
 // SELECCIONO LOS BOTONES CON UNA VARIABLE GLOBAL
 
@@ -125,7 +31,7 @@ function addToCartClicked(event) {
 function addItemToShopCart(itemTitle, itemPrice, itemImg) {
     const shoppingCartRow = document.createElement('div');
     const shoppingCartContent = `
-    <div class="row products">
+    <div class="row products shoppingCartItem">
         <div class="col-6">
             <div class="shopping-cart-item d-flex align-items-center h-100 border-bottom pb-2 pt-3">
                 <img src=${itemImg} class="pic-products">
@@ -149,4 +55,47 @@ function addItemToShopCart(itemTitle, itemPrice, itemImg) {
 
 shoppingCartRow.innerHTML = shoppingCartContent;
 shoppingCartItemsContainer.append(shoppingCartRow);
+
+shoppingCartRow.querySelector('.buttonDelete').addEventListener('click', removeShoppingCartItem);
+
+shoppingCartRow.querySelector('.shoppingCartItemQuantity').addEventListener('change', quantityChanged);
+
+updateShoppingCartTotal();
+}
+
+// FUNCIÓN PARA SUMAR EL TOTAL DEL CARRITO
+
+function updateShoppingCartTotal() {
+    let total = 0;
+    const shoppingCartTotal = document.querySelector('.shoppingCartTotal')
+
+    const shoppingCartItems = document.querySelectorAll('.shoppingCartItem')
+
+    shoppingCartItems.forEach((shoppingCartItem) => {
+        const shoppingCartItemPriceElement = shoppingCartItem.querySelector('.shoppingCartItemPrice');
+        const shoppingCartItemPrice = Number(shoppingCartItemPriceElement.textContent.replace('$','' ));
+        const shoppingCartItemQuantityElement = shoppingCartItem.querySelector('.shoppingCartItemQuantity');
+        const shoppingCartItemQuantity = Number(shoppingCartItemQuantityElement.value);
+        total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
+    })
+
+    shoppingCartTotal.innerHTML = `${total.toFixed(2)}`;
+}
+
+// FUNCIÓN PARA BORRAR UN ELEMENTO DEL CARRITO
+
+function removeShoppingCartItem(event) {
+    const buttonClicked = event.target;
+    buttonClicked.closest('.shoppingCartItem').remove();
+    updateShoppingCartTotal();
+}
+
+// FUNCIÓN PARA CAMBIAR LA CANTIDAD DE UN MISMO ELEMENTO EN EL CARRITO
+
+function quantityChanged(event) {
+    const input = event.target;
+    if (input.value <= 0) {
+        input.value = 1;
+    }
+    updateShoppingCartTotal();
 }
