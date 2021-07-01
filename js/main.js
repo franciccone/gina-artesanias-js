@@ -60,7 +60,7 @@ shoppingCartRow.querySelector('.buttonDelete').addEventListener('click', removeS
 
 shoppingCartRow.querySelector('.shoppingCartItemQuantity').addEventListener('change', quantityChanged);
 
-updateShoppingCartTotal();
+updateShoppingCartTotal.setItem();
 }
 
 // FUNCIÓN PARA SUMAR EL TOTAL DEL CARRITO
