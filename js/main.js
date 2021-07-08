@@ -31,6 +31,8 @@ function addItemToShopCart(itemTitle, itemPrice, itemImg) {
 
     const elementsTitle = shoppingCartItemsContainer.getElementsByClassName('shoppingCartItemTitle')
 
+// EN ESTE FOR PARA QUE NO SE REPITAN LOS PRODUCTOS UTILIZO JQUERY
+
     for(let i = 0; i < elementsTitle.length; i++) {
         if (elementsTitle[i].innerText === itemTitle) {
             let elementQuantity = elementsTitle[i].parentElement.parentElement.parentElement.querySelector('.shoppingCartItemQuantity');
