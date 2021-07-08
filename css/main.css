@@ -136,8 +136,7 @@ section .cta-news {
 .title-products {
   padding: 0.5em 0;
   margin: 0 0;
-  text-align: center;
-  text-transform: uppercase; }
+  text-align: center; }
 
 .price-products {
   padding: 0 0 0.5em 0;

@@ -1,4 +1,3 @@
-
 // SELECCIONO LOS BOTONES CON UNA VARIABLE GLOBAL
 
 const addToShoppingCartButtons = document.querySelectorAll('.cta');
@@ -29,6 +28,19 @@ function addToCartClicked(event) {
 // CREO EL DIV DONDE VAN A ESTAR LOS PRODUCTOS ELEGIDOS POR EL USUARIO Y CREO LOS ELEMENTOS CON TEMPLATE LITERALS
 
 function addItemToShopCart(itemTitle, itemPrice, itemImg) {
+
+    const elementsTitle = shoppingCartItemsContainer.getElementsByClassName('shoppingCartItemTitle')
+
+    for(let i = 0; i < elementsTitle.length; i++) {
+        if (elementsTitle[i].innerText === itemTitle) {
+            let elementQuantity = elementsTitle[i].parentElement.parentElement.parentElement.querySelector('.shoppingCartItemQuantity');
+        elementQuantity.value++;
+        $('.toast').toast('show');
+        updateShoppingCartTotal();
+        return;
+        }
+    }
+
     const shoppingCartRow = document.createElement('div');
     const shoppingCartContent = `
     <div class="row products shoppingCartItem">
@@ -60,7 +72,7 @@ shoppingCartRow.querySelector('.buttonDelete').addEventListener('click', removeS
 
 shoppingCartRow.querySelector('.shoppingCartItemQuantity').addEventListener('change', quantityChanged);
 
-updateShoppingCartTotal.setItem();
+updateShoppingCartTotal();
 }
 
 // FUNCIÓN PARA SUMAR EL TOTAL DEL CARRITO
