@@ -115,6 +115,11 @@ section .cta-news {
 .news-title-section {
   margin: 0.3em 0 0 0; }
 
+.cta-more {
+  display: flex;
+  justify-content: center;
+  text-align: center; }
+
 /* ---------- PRODUCTOS ---------- */
 .container-products {
   margin: 0 0 1em 0; }
