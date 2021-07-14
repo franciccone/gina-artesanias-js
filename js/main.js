@@ -12,6 +12,9 @@ addToShoppingCartButtons.forEach(addToCartButton => {
     addToCartButton.addEventListener('click', addToCartClicked);
 });
 
+const buyButton = document.querySelector('.buyButton');
+buyButton.addEventListener('click', buyButtonClicked)
+
 // CREO LA FUNCIÓN addToCartClicked CON UN EVENT COMO PARÁMETRO; ADEMÁS AÑADO VARIABLES PARA TOMAR LOS DATOS DE LOS PRODUCTOS DEL HTML
 
 function addToCartClicked(event) {
@@ -111,5 +114,10 @@ function quantityChanged(event) {
     if (input.value <= 0) {
         input.value = 1;
     }
+    updateShoppingCartTotal();
+}
+
+function buyButtonClicked() {
+    shoppingCartItemsContainer.innerHTML = '';
     updateShoppingCartTotal();
 }
