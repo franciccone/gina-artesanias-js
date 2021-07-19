@@ -14,7 +14,7 @@ form.addEventListener('submit', function(e) {
     console.log(info.get('email'))
     console.log(info.get('message'))
 
-    fetch('./php/post.php',{
+    fetch('../php/post.php',{
         method: 'POST',
         body: info
     })
