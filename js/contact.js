@@ -1,26 +1,56 @@
-// LLAMO AL FORMULARIO
+// TRAIGO TODO LO QUE NECESITO DEL HTML
 
-const form = document.getElementById('form-api')
+const form = {
+    name: document.getElementById('name'),
+    email: document.getElementById('email'),
+    message: document.getElementById('message'),
+    submit: document.getElementById('submit'),
+    alerts: document.getElementById('form-alerts'),
+};
 
-// AGREGO EVENTO AL BOTÓN ENVIAR Y DETECTO LOS CAMPOS DEL FORMULARIO
+// AGREGO EVENT AL BOTÓN SUBMIT
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault();
+form.submit.addEventListener('click', () => {
+    const request = new XMLHttpRequest();
 
-    let info = new FormData(form);
+    request.onload = () => {
+        let responseObject = null;
 
-    console.log(info)
-    console.log(info.get('name'))
-    console.log(info.get('email'))
-    console.log(info.get('message'))
+        try {
+            responseObject = JSON.parse(request.responseText);
+        }catch (e) {
+            console.error('No se pudo parsear el JSON')
+        }
 
-    fetch('../php/post.php',{
-        method: 'POST',
-        body: info
-    })
+        if (responseObject) {
+            handleResponse(responseObject);
+        }
+    };
 
-    .then(res => res.json())
-    .then(data => {
-        console.log(data)
-    })
-})
+    const requestData = `name=${form.name.value}&email=${form.email.value}&message=${form.message.value}`;
+
+    console.log(requestData);
+
+    request.open('post', '../php/post.php');
+    request.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+    request.send(requestData);
+
+});
+
+function handleResponse (responseObject) {
+    if (responseObject.ok) {
+        location.href = '../index.html';
+    } else {
+        while (form.alerts.firstChild) {
+            form.alerts.removeChild(form.alerts.firstChild);
+        }
+        
+        responseObject.alerts.forEach((alert) => {
+            const li = document.createElement('li');
+            li.textContent = alert;
+            form.alerts.appendChild(li);
+        });
+
+        form.alerts.style.display = 'block';
+    }
+}

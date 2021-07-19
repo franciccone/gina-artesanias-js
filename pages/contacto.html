@@ -80,9 +80,13 @@
 			<h1 class="pages-titles">Envianos tu opinión</h1>
 		</div>
 
-		<div class="form"></div>
+		<div>
+			<ul id="form-alerts" class="form-alerts">
+				<li>Generic Error #1</li>
+			</ul>
+		</div>
 
-		<form id="form-api">
+		<form>
 			<div class="form-group">
 				<label for="name">Nombre</label>
 				<input type="name" name="name" class="form-control name" id="name" placeholder="Nombre">
@@ -93,11 +97,11 @@
 			</div>
 			<div class="form-group">
 				<label for="message">Tu mensaje</label>
-				<textarea name="message" class="form-control message" id="message" rows="3" placeholder="Escribe aquí"></textarea>
+				<textarea class="form-control message" name="message" id="message" rows="3" placeholder="Escribe aquí"></textarea>
 			</div>
 			<div class="form-group">
-				<input class="btn cta btn-reset" id="btn-reset" type="reset" value="Borrar">
-				<input class="btn cta submit" id="submit" type="submit" value="Enviar" data-toggle="modal" data-target="#exampleModal">
+				<input class="btn cta btn-reset" name="reset" id="btn-reset" type="reset" value="Borrar">
+				<input class="btn cta submit" name="submit" id="submit" type="submit" value="Enviar" data-toggle="modal" data-target="#exampleModal">
 			</div>
 		</form>
 

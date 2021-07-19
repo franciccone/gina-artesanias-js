@@ -191,6 +191,17 @@ section .cta-news {
   text-align: center;
   text-justify: inter-word; }
 
+/* ---------- CONTACT ---------- */
+.form-alerts {
+  background-color: #ffe8e8;
+  border: 1px solid red;
+  display: none;
+  font-size: 12px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  padding: 10px 25px;
+  max-width: 250px; }
+
 /* ---------- ASSETS ---------- */
 .cta {
   display: inline-block;
