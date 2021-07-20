@@ -1,4 +1,8 @@
+// SELECCIONO EL FORM
+
 const form = document.getElementById('form');
+
+// AGREGO UN EVENT LISTENER AL BOTÓN ENVIAR Y HAGO UNA FUNCIÓN CON FETCH PARA UTILIZAR JSONPLACEHOLDER
 
 form.addEventListener('submit', function(e){
     e.preventDefault();
