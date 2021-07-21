@@ -2,19 +2,19 @@
     {
         "id": 1,
         "title": "conejitos",
-        "price": "$900",
+        "price": "$1000",
         "img": "../media/conejitos2.webp"
     },
     {
         "id": 2,
         "title": "ovejita",
-        "price": "$900",
+        "price": "$1000",
         "img": "../media/oveja.webp"
     },
     {
         "id": 3,
         "title": "mini conejito",
-        "price": "$900",
+        "price": "$1000",
         "img": "../media/mini-conejito.webp"
     }
 ]
