@@ -33,5 +33,6 @@ header {
 }
 
 .active {
-    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 3px 3px 8px rgba(0, 0, 0, 0.19);
+    color: $grey-color !important;
+    font-weight: bold;
 }

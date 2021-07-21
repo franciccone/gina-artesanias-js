@@ -1,4 +1,4 @@
-/* ---------- VARIABLES | COLORS ---------- */
+/* ---------- COLORS ---------- */
 /* ---------- HEADER ---------- */
 @import url("https://fonts.googleapis.com/css2?family=Cabin:wght@400;500;700&display=swap");
 header {
@@ -23,7 +23,8 @@ header {
     color: #000000; }
 
 .active {
-  text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2), 3px 3px 8px rgba(0, 0, 0, 0.19); }
+  color: #656565 !important;
+  font-weight: bold; }
 
 /* ---------- FOOTER ---------- */
 footer {
@@ -118,6 +119,7 @@ section .cta-news {
 .cta-more {
   display: flex;
   justify-content: center;
+  align-items: center;
   text-align: center; }
 
 /* ---------- PRODUCTOS ---------- */
