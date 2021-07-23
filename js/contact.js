@@ -7,9 +7,9 @@ const form = document.getElementById('form');
 form.addEventListener('submit', function(e){
     e.preventDefault();
 
-    const name = document.getElementById('name');
-    const email = document.getElementById('email');
-    const message = document.getElementById('message');
+    const name = document.getElementById('name').value;
+    const email = document.getElementById('email').value;
+    const message = document.getElementById('message').value;
 
     fetch('https://jsonplaceholder.typicode.com/posts/1/comments', {
         method: 'POST',
