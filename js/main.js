@@ -1,4 +1,4 @@
-// SELECCIONO LOS BOTONES CON UNA VARIABLE GLOBAL
+// SELECCIONO LOS BOTONES QUE TIENEN LA CLASE .cta CON UNA VARIABLE GLOBAL
 
 const addToShoppingCartButtons = document.querySelectorAll('.cta');
 
@@ -6,16 +6,18 @@ const addToShoppingCartButtons = document.querySelectorAll('.cta');
 
 const shoppingCartItemsContainer = document.querySelector('.shopping-cart')
 
-// MÉTODO FOR EACH CON ARROW FUNCTION PARA QUE EN CADA BOTÓN SUCEDA ALGO, UN EVENTO CLICK
+// MÉTODO FOR EACH CON ARROW FUNCTION PARA QUE EN CADA BOTÓN SUCEDA ALGO, EN ESTE CASO UN EVENTO 'click'
 
 addToShoppingCartButtons.forEach(addToCartButton => {
     addToCartButton.addEventListener('click', addToCartClicked);
 });
 
+// SELECCIONO EL BOTÓN COMPRAR Y LE AGREGO UN EVENTO PARA QUE APAREZCA UN MODAL DE BOOTSTRAP AVISÁNDOLE AL USUARIO QUE LA TRANSACCIÓN FUE EXITOSA
+
 const buyButton = document.querySelector('.buyButton');
 buyButton.addEventListener('click', buyButtonClicked)
 
-// CREO LA FUNCIÓN addToCartClicked CON UN EVENT COMO PARÁMETRO; ADEMÁS AÑADO VARIABLES PARA TOMAR LOS DATOS DE LOS PRODUCTOS DEL HTML
+// CREO LA FUNCIÓN addToCartClicked CON UN EVENT COMO PARÁMETRO; ADEMÁS AÑADO VARIABLES PARA TOMAR LOS DATOS DE LOS PRODUCTOS DEL HTML SEGÚN LAS CLASES
 
 function addToCartClicked(event) {
     const button = event.target;
@@ -32,19 +34,23 @@ function addToCartClicked(event) {
 
 function addItemToShopCart(itemTitle, itemPrice, itemImg) {
 
-    const elementsTitle = shoppingCartItemsContainer.getElementsByClassName('shoppingCartItemTitle')
+    // Recorro todos los títulos de los productos con la clase .shoppingCartItemTitle
 
-    // EN ESTE FOR PARA QUE NO SE REPITAN LOS PRODUCTOS UTILIZO JQUERY
+    const elementsTitle = shoppingCartItemsContainer.getElementsByClassName('shoppingCartItemTitle');
+
+    // Acá uso jQuery dentro del for para que no se repitan los productos y aparece un toast de Bootstrap que avisa que se agregó correctamente el producto
 
     for(let i = 0; i < elementsTitle.length; i++) {
-        if (elementsTitle[i].innerText === itemTitle) {
-            let elementQuantity = elementsTitle[i].parentElement.parentElement.parentElement.querySelector('.shoppingCartItemQuantity');
-        elementQuantity.value++;
-        $('.toast').toast('show');
-        updateShoppingCartTotal();
-        return;
+        if (elementsTitle[i].innerText === itemTitle) { // Con este if compruebo si el elementsTitle que itero (en la posición i) es igual al itemTitle
+            let elementQuantity = elementsTitle[i].parentElement.parentElement.parentElement.querySelector('.shoppingCartItemQuantity');  // Selecciono el input del elementsTitle que aparece en el div creado, subiendo tres veces de parent para traer el elemento con clase .shoppingCartItemQuantity
+            elementQuantity.value++; // Sumo el valor del elementQuantity cuando es el mismo elemento
+            $('.toast').toast('show'); // Aparece el toast que le avisa al usuario que el producto se agregó correctamente
+            updateShoppingCartTotal(); // Llamo a esta función para que se actualice el número del total
+            return; // Si el producto es el mismo, suma -aumentando la cantidad- pero deja de ejecutarse el código y sale de la función
         }
     }
+
+    // Creo el div
 
     const shoppingCartRow = document.createElement('div');
     const shoppingCartContent = `
@@ -63,19 +69,18 @@ function addItemToShopCart(itemTitle, itemPrice, itemImg) {
         <div class="col-4">
             <div
                 class="shopping-cart-quantity d-flex justify-content-between align-items-center h-100 border-bottom pb-2 pt-3">
-                <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number"
-                    value="1">
+                <input class="shopping-cart-quantity-input shoppingCartItemQuantity" type="number" value="1">
                 <button class="btn btn-danger buttonDelete" type="button">X</button>
             </div>
         </div>
     </div>`;
 
-shoppingCartRow.innerHTML = shoppingCartContent;
-shoppingCartItemsContainer.append(shoppingCartRow);
+shoppingCartRow.innerHTML = shoppingCartContent; // Meto el elemento shoppingCartContent que cree recién en la variable que hice antes (shoppingCartRow) a través de un innerHTML
+shoppingCartItemsContainer.append(shoppingCartRow); // Con un append incluyo el shoppingCartRow en el HTML
 
-shoppingCartRow.querySelector('.buttonDelete').addEventListener('click', removeShoppingCartItem);
+shoppingCartRow.querySelector('.buttonDelete').addEventListener('click', removeShoppingCartItem); // Selecciono los botones de borrar, les agrego un evento 'click' y creo una función para que se borre el producto (ver debajo)
 
-shoppingCartRow.querySelector('.shoppingCartItemQuantity').addEventListener('change', quantityChanged);
+shoppingCartRow.querySelector('.shoppingCartItemQuantity').addEventListener('change', quantityChanged); // Selecciono los elementos con la clase .shoppingCartItemQuantity, les agrego un evento 'change' y creo una función para que se actualice la cantidad del producto (ver debajo)
 
 updateShoppingCartTotal();
 }
@@ -83,20 +88,21 @@ updateShoppingCartTotal();
 // FUNCIÓN PARA SUMAR EL TOTAL DEL CARRITO
 
 function updateShoppingCartTotal() {
-    let total = 0;
-    const shoppingCartTotal = document.querySelector('.shoppingCartTotal')
+    let total = 0;  // Empieza con un valor de 0 para ir actualizándose a medida que se añaden productos
+    const shoppingCartTotal = document.querySelector('.shoppingCartTotal'); // Selecciono el total del carrito para hacer las operaciones
 
-    const shoppingCartItems = document.querySelectorAll('.shoppingCartItem')
+    const shoppingCartItems = document.querySelectorAll('.shoppingCartItem'); // Selecciono todos los elementos con la clase shoppingCartItem
 
+    // Por cada shoppingCartItems hago algo para, finalmente, operar
     shoppingCartItems.forEach((shoppingCartItem) => {
-        const shoppingCartItemPriceElement = shoppingCartItem.querySelector('.shoppingCartItemPrice');
-        const shoppingCartItemPrice = Number(shoppingCartItemPriceElement.textContent.replace('$','' ));
-        const shoppingCartItemQuantityElement = shoppingCartItem.querySelector('.shoppingCartItemQuantity');
-        const shoppingCartItemQuantity = Number(shoppingCartItemQuantityElement.value);
-        total = total + shoppingCartItemPrice * shoppingCartItemQuantity;
-    })
+        const shoppingCartItemPriceElement = shoppingCartItem.querySelector('.shoppingCartItemPrice'); // Variable para seleccionar el precio del elemento
+        const shoppingCartItemPrice = Number(shoppingCartItemPriceElement.textContent.replace('$','' )); // Variable para transformar el precio, que está como string en el HTML, en un número. Además quito el sigo $ con un replace a un string vacío
+        const shoppingCartItemQuantityElement = shoppingCartItem.querySelector('.shoppingCartItemQuantity'); // Variable para seleccionar la cantidad del elemento
+        const shoppingCartItemQuantity = Number(shoppingCartItemQuantityElement.value); // Variable transformar la cantidad de string a number
+        total = total + shoppingCartItemPrice * shoppingCartItemQuantity; // Operación para calcular el total
+    });
 
-    shoppingCartTotal.innerHTML = `${total.toFixed(2)}`;
+    shoppingCartTotal.innerHTML = `${total.toFixed(2)}`; // Muestro el total en el HTML con un innerHTML. Con el toFixed ajusto la cantidad de decimales a sólo 2
 }
 
 // FUNCIÓN PARA BORRAR UN ELEMENTO DEL CARRITO
@@ -107,7 +113,7 @@ function removeShoppingCartItem(event) {
     updateShoppingCartTotal();
 }
 
-// FUNCIÓN PARA CAMBIAR LA CANTIDAD DE UN MISMO ELEMENTO EN EL CARRITO
+// FUNCIÓN PARA CAMBIAR LA CANTIDAD DE UN MISMO ELEMENTO EN EL CARRITO, EVITANDO TAMBIÉN QUE LA CANTIDAD SEA NEGATIVA
 
 function quantityChanged(event) {
     const input = event.target;
@@ -116,6 +122,8 @@ function quantityChanged(event) {
     }
     updateShoppingCartTotal();
 }
+
+// FUNCIÓN PARA QUE SE BORRE EL CONTENIDO DEL CARRITO CUANDO EL USUARIO FINALIZA LA COMPRA
 
 function buyButtonClicked() {
     shoppingCartItemsContainer.innerHTML = '';
