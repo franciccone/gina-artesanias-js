@@ -20,6 +20,8 @@ JavaScript
 
 jQuery
 
+AJAX
+
 SASS
 
 Bootstrap 5
