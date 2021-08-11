@@ -4,7 +4,7 @@
 
 ## Description
 
-This is the final version of a fictional E-Commerce project for Gina Artesanías, a shop with hand-made products for babies and kids, as part of the JavaScript course for [Coderhouse](https://www.coderhouse.es/).
+This is the final version of an E-Commerce project for Gina Artesanías, a shop with hand-made products for babies and kids, as part of the JavaScript course for [Coderhouse](https://www.coderhouse.es/).
 
 It was my first project with JavaScript, where I learned how to use JavaScript, jQuery, DOM and AJAX.
 
